@@ -13,7 +13,7 @@ public class MathappJava {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int choice;
-        
+
         do {
             System.out.println("\n=== Math App Menu ===");
             System.out.println("1. Addition of two numbers");
@@ -30,122 +30,193 @@ public class MathappJava {
             System.out.println("12. Maximum of N numbers (stored in an array)");
             System.out.println("0. Exit");
 
-            System.out.print("Enter your choice: ");
-            choice = input.nextInt();
+            // Input validation for menu choice
+            while (true) {
+                System.out.print("Enter your choice: ");
+
+                if (input.hasNextInt()) {
+                    choice = input.nextInt();
+                    break;
+                } else {
+                    System.out.println("Invalid input. Please enter a number from 0 to 12.");
+                    input.next();
+                }
+            }
 
             switch (choice) {
-                
-            
-                 // 1. Addition
-                 
+
+                // CASE 1: Addition
                 case 1:
+                    double num1, num2;
+
                     System.out.print("Enter first number: ");
-                    double add1 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num1 = input.nextDouble();
 
                     System.out.print("Enter second number: ");
-                    double add2 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num2 = input.nextDouble();
 
-                    System.out.println("Result: " + (add1 + add2));
+                    System.out.println("Result: " + (num1 + num2));
                     break;
-                    
-                     // 2. Subtraction
+
+                // CASE 2: Subtraction
                 case 2:
                     System.out.print("Enter first number: ");
-                    double sub1 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num1 = input.nextDouble();
 
                     System.out.print("Enter second number: ");
-                    double sub2 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num2 = input.nextDouble();
 
-                    System.out.println("Result: " + (sub1 - sub2));
+                    System.out.println("Result: " + (num1 - num2));
                     break;
-                    
-                    // 3. Multiplication
+
+                // CASE 3: Multiplication
                 case 3:
                     System.out.print("Enter first number: ");
-                    double mul1 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num1 = input.nextDouble();
 
                     System.out.print("Enter second number: ");
-                    double mul2 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num2 = input.nextDouble();
 
-                    System.out.println("Result: " + (mul1 * mul2));
+                    System.out.println("Result: " + (num1 * num2));
                     break;
-                    
-                     // 4. Division
+
+                // CASE 4: Division
                 case 4:
                     System.out.print("Enter first number: ");
-                    double div1 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num1 = input.nextDouble();
 
                     System.out.print("Enter second number: ");
-                    double div2 = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    num2 = input.nextDouble();
 
-                    if (div2 == 0) {
+                    if (num2 == 0) {
                         System.out.println("Error: Cannot divide by zero.");
                     } else {
-                        System.out.println("Result: " + (div1 / div2));
+                        System.out.println("Result: " + (num1 / num2));
                     }
                     break;
-                    
-                     // 5. Factorial
+
+                // CASE 5: Factorial
                 case 5:
-                    System.out.print("Enter a non-negative integer: ");
-                    int n = input.nextInt();
+                    int n;
+                    long factorial = 1;
+
+                    System.out.print("Enter a number: ");
+
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    n = input.nextInt();
 
                     if (n < 0) {
-                        System.out.println("Error: Factorial is not defined for negative numbers.");
+                        System.out.println("Error: Factorial cannot be negative.");
+                    } else if (n > 20) {
+                        System.out.println("Error: Number is too large for long factorial.");
                     } else {
-                        long factorial = 1;
-
                         for (int i = 1; i <= n; i++) {
-                            factorial *= i;
+                            factorial = factorial * i;
                         }
 
                         System.out.println("Factorial: " + factorial);
                     }
                     break;
-                    
-                     // 6. Power
+
+                // CASE 6: Power
                 case 6:
+                    double base;
+                    int exponent;
+
                     System.out.print("Enter the base (x): ");
-                    double x = input.nextDouble();
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    base = input.nextDouble();
 
                     System.out.print("Enter the exponent (y): ");
-                    double y = input.nextDouble();
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    exponent = input.nextInt();
 
-                    double power = Math.pow(x, y);
-
-                    System.out.println("Result: " + power);
+                    System.out.println("Result: " + Math.pow(base, exponent));
                     break;
-                    
-                     // 7. Sum from 1 to N
-                case 7:
-                    System.out.print("Enter N: ");
-                    int sumN = input.nextInt();
 
-                    if (sumN < 1) {
+                // CASE 7: Sum from 1 to N
+                case 7:
+                    int limit;
+                    long sum = 0;
+
+                    System.out.print("Enter N: ");
+
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    limit = input.nextInt();
+
+                    if (limit < 1) {
                         System.out.println("Error: N must be at least 1.");
                     } else {
-                        long sum = 0;
-
-                        for (int i = 1; i <= sumN; i++) {
-                            sum += i;
+                        for (int i = 1; i <= limit; i++) {
+                            sum = sum + i;
                         }
 
-                        System.out.println("Sum of numbers 1 to " + sumN + ": " + sum);
+                        System.out.println("Sum from 1 to " + limit + ": " + sum);
                     }
                     break;
-                    
-                     // 8. Prime number
-                case 8:
-                    System.out.print("Enter a number: ");
-                    int primeNum = input.nextInt();
 
+                // CASE 8: Prime Check
+                case 8:
+                    int primeNumber;
                     boolean isPrime = true;
 
-                    if (primeNum < 2) {
+                    System.out.print("Enter a number: ");
+
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    primeNumber = input.nextInt();
+
+                    if (primeNumber < 2) {
                         isPrime = false;
                     } else {
-                        for (int i = 2; i <= primeNum / i; i++) {
-                            if (primeNum % i == 0) {
+                        for (int i = 2; i < primeNumber; i++) {
+                            if (primeNumber % i == 0) {
                                 isPrime = false;
                                 break;
                             }
@@ -153,107 +224,173 @@ public class MathappJava {
                     }
 
                     if (isPrime) {
-                        System.out.println(primeNum + " is a prime number.");
+                        System.out.println(primeNumber + " is a prime number.");
                     } else {
-                        System.out.println(primeNum + " is not a prime number.");
-                         }
+                        System.out.println(primeNumber + " is not a prime number.");
+                    }
                     break;
-                    
-                    
-                    // 9. GCD
+
+                // CASE 9: GCD
                 case 9:
+                    int a, b;
+                    int gcd = 1;
+
                     System.out.print("Enter first number: ");
-                    int gcdA = input.nextInt();
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    a = input.nextInt();
 
                     System.out.print("Enter second number: ");
-                    int gcdB = input.nextInt();
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    b = input.nextInt();
 
-                    gcdA = Math.abs(gcdA);
-                    gcdB = Math.abs(gcdB);
+                    a = Math.abs(a);
+                    b = Math.abs(b);
 
-                    if (gcdA == 0 && gcdB == 0) {
+                    if (a == 0 && b == 0) {
                         System.out.println("Error: GCD of 0 and 0 is undefined.");
                     } else {
-                        while (gcdB != 0) {
-                            int remainder = gcdA % gcdB;
-                            gcdA = gcdB;
-                            gcdB = remainder;
+                        int smaller;
+
+                        if (a < b) {
+                            smaller = a;
+                        } else {
+                            smaller = b;
                         }
 
-                        System.out.println("GCD: " + gcdA);
-                    }
-                     break;
-                     
-                      // 10. Absolute value
-                case 10:
-                    System.out.print("Enter a number: ");
-                    double absNum = input.nextDouble();
+                        for (int i = 1; i <= smaller; i++) {
+                            if (a % i == 0 && b % i == 0) {
+                                gcd = i;
+                            }
+                        }
 
-                    System.out.println("Absolute value: " + Math.abs(absNum));
+                        System.out.println("GCD: " + gcd);
+                    }
                     break;
 
-                // 11. Average of N numbers
-                case 11:
-                    System.out.print("Enter N (number of values): ");
-                    int avgN = input.nextInt();
+                // CASE 10: Absolute Value
+                case 10:
+                    double value;
 
-                    if (avgN <= 0) {
+                    System.out.print("Enter a number: ");
+
+                    while (!input.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a number.");
+                        input.next();
+                    }
+                    value = input.nextDouble();
+
+                    System.out.println("Absolute value: " + Math.abs(value));
+                    break;
+
+                // CASE 11: Average of N Numbers
+                case 11:
+                    int count;
+                    double total = 0;
+
+                    System.out.print("Enter N (number of values): ");
+
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    count = input.nextInt();
+
+                    if (count <= 0) {
                         System.out.println("Error: N must be greater than 0.");
                     } else {
-                        double[] numbers = new double[avgN];
-                        double total = 0;
-                        
-                         for (int i = 0; i < avgN; i++) {
+                        double[] numbers = new double[count];
+
+                        for (int i = 0; i < count; i++) {
                             System.out.print("Enter number " + (i + 1) + ": ");
+
+                            while (!input.hasNextDouble()) {
+                                System.out.println("Invalid input. Please enter a number.");
+                                input.next();
+                            }
+
                             numbers[i] = input.nextDouble();
-                            total += numbers[i];
+                            total = total + numbers[i];
                         }
 
-                        double average = total / avgN;
+                        double average = total / count;
 
                         System.out.println("Average: " + average);
                     }
                     break;
-                    
-                     // 12. Maximum of N numbers
-                case 12:
-                    System.out.print("Enter N (number of values): ");
-                    int maxN = input.nextInt();
 
-                    if (maxN <= 0) {
+                // CASE 12: Maximum of N Numbers
+                case 12:
+                    int numberCount;
+
+                    System.out.print("Enter N (number of values): ");
+
+                    while (!input.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a whole number.");
+                        input.next();
+                    }
+                    numberCount = input.nextInt();
+
+                    if (numberCount <= 0) {
                         System.out.println("Error: N must be greater than 0.");
                     } else {
-                        double[] numbers = new double[maxN];
+                        double[] values = new double[numberCount];
 
-                        for (int i = 0; i < maxN; i++) {
+                        for (int i = 0; i < numberCount; i++) {
                             System.out.print("Enter number " + (i + 1) + ": ");
-                            numbers[i] = input.nextDouble();
+
+                            while (!input.hasNextDouble()) {
+                                System.out.println("Invalid input. Please enter a number.");
+                                input.next();
+                            }
+
+                            values[i] = input.nextDouble();
                         }
 
-                        double maximum = numbers[0];
-                                                for (int i = 1; i < maxN; i++) {
-                            if (numbers[i] > maximum) {
-                                maximum = numbers[i];
+                        double maximum = values[0];
+
+                        for (int i = 1; i < numberCount; i++) {
+                            if (values[i] > maximum) {
+                                maximum = values[i];
                             }
                         }
 
-                        System.out.println("Maximum: " + maximum);
+                        System.out.println("Maximum value: " + maximum);
                     }
                     break;
 
-                // Exit
+                // CASE 0: Exit
                 case 0:
-                    System.out.println("Thank you!");
+                    System.out.println("Thank you for using the Math App!");
                     break;
-                    
-                    // Invalid choice
+
+                // Invalid choice
                 default:
                     System.out.println("Invalid choice. Please select 0 to 12.");
             }
 
-        
-    }  while (choice != 0);
- }
-}
+        } while (choice != 0);
 
+        input.close();
+    }
+}
  
+
+                   
+                
+                       
+                   
+                   
+                  
+
+                 
+
+                   
+                
+
+                    
